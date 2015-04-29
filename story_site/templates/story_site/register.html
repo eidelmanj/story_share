@@ -1,0 +1,38 @@
+<head>
+</head>
+
+<body>
+  {% load staticfiles %}
+  {% include "story_site/topmenu.html" %}
+
+  <div class="register_errors">
+    {% if userAlreadyTaken %}
+    <p>Username already taken!</p>
+    {% endif %}
+  </div>
+
+  <div class="registration_menu">
+    <form action="/story_site/generate_user/" method="POST">
+      {% csrf_token %}
+      <table class="registration_table">
+	<tr>
+	  <td>Username: </td>
+	  <td><input type="text" name="username_input"></td>
+	</tr>
+	<tr>
+	  <td>Email Address: </td>
+	  <td><input type="text" name="email_input"></td>
+	</tr>
+	<tr>
+	  <td>Password: </td>
+	  <td><input type="password" name="password_input"></td>
+	</tr>
+
+	<tr>
+	  <td><input type="submit" value="Register"></td>
+	</tr>
+
+      </table>
+    </form>
+  </div>
+</body>

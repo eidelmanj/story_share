@@ -1,0 +1,12 @@
+<div class="topMenu">
+  <ul>
+    <li><a href = "/story_site/">Home</a></li>
+    {% if user.is_authenticated %}
+    <li><a href = "/story_site/user_page.html"> {{ user.get_username }}'s Home Page </a> </li>
+    <li><a href = "/story_site/logout/">Logout</a></li>
+    {% else %}
+    <li><a href = "/story_site/login/">Sign in</a></li>
+    <li><a href = "/story_site/register/">Register</a></li>
+    {% endif %}
+  </ul>
+</div>
