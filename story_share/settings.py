@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'story_site',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,7 +73,7 @@ TEMPLATE_DIRS = (
     BASE_DIR + STORY_SITE_DIR + '/templates/',
 )
 
-STATIC_DIRS = (
+STATICFILES_DIRS = (
     BASE_DIR + STORY_SITE_DIR + "/static/",
 )
 
