@@ -1,0 +1,10 @@
+<head>
+</head>
+
+<body>
+  {% load staticfiles %}
+  {% include "story_site/topmenu.html" %}
+
+  Your download is available <a href="{{ MEDIA_URL }}tmp/{{ user.get_username }}/compiled_audio.mp3">Here</a>
+
+</body>

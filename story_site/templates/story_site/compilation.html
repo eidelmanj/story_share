@@ -1,0 +1,17 @@
+<head>
+</head>
+
+<body>
+  {% load staticfiles %}
+  {% include "story_site/topmenu.html" %}
+
+  <div class="choose_story_features" >
+    <form action="{% url 'generate_compiled_stories' %}" enctype="multipart/form-data" method="POST" >
+      {% csrf_token %}
+      <table class="choose_story_table">
+	{{ form.as_table }}
+      </table>
+      <input type="submit">
+    </form>
+  </div>
+</body>
