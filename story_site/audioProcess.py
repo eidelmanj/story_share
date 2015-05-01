@@ -32,14 +32,17 @@ def check_file_format(filePath):
 
 ### Takes a list of file paths to audio files (of the same format),
 ### and concatenates all of them into a new audio file at destinationPath
-def concatenate_audio_files(fnameList, destinationPath, tmpDirPath):
+def concatenate_audio_files(fnameList, tmpDirPath, klobber=False):
+
+    fileName = utilities.id_generator(size=10) + ".mp3"
+    destinationPath = os.path.join(tmpDirPath, fileName)
 
     if not fnameList:
         return None
 
     elif len(fnameList) == 1:
         shutil.copy2(fnameList[0], destinationPath)
-        return destinationPath
+        return fileName
 
     concatWorkFilePath = os.path.join(tmpDirPath, utilities.id_generator(size=10))
     print concatWorkFilePath
@@ -52,7 +55,7 @@ def concatenate_audio_files(fnameList, destinationPath, tmpDirPath):
     os.system('ffmpeg' + ' -f ' + ' concat ' + ' -i ' + concatWorkFilePath + ' -c ' + ' copy ' + destinationPath)
     os.remove(concatWorkFilePath)
 
-    return destinationPath
+    return fileName
 
 
 

@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^authenticate/', views.authentication_page, name='authentication_page'),
     url(r'^upload/', views.upload_file, name='upload_file'),
     url(r'^user_page/', views.user_page, name='user_page'),
+    url(r'^compile/', views.compilation_page, name='compilation_page'),
+    url(r'^generate_compiled_stories/', views.generate_compiled_stories, name='generate_compiled_stories'),
+    url(r'^compile_success/', views.compile_success, name='compile_success'),
 ]

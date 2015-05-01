@@ -16,4 +16,34 @@
     </form>
   </div>
 
+  <div class="owned_audio_list">
+    {% if allAudio %}
+
+    {% for audioFile in allAudio %}
+
+    <table class="owned_audio_table">
+      <tr>
+	<td> Title: </td>
+	<td> {{ audioFile.title }} </td>
+      </tr>
+
+      <tr>
+	<td> Description: </td>
+	<td> {{ audioFile.description }} </td>
+      </tr>
+
+      <tr>
+	<td> Download: </td>
+	<td> <a href = "{{ audioFile.webPath }}"> {{ audioFile.title }} </td>
+    </table>
+    <br><br>
+
+    {% endfor %}
+
+    {% else %}
+
+    
+    {% endif %}
+  </div>
+
 </body>

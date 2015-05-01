@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 STORY_SITE_DIR = "/story_site/"
 
@@ -50,6 +51,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
+
+
 ROOT_URLCONF = 'story_share.urls'
 
 WSGI_APPLICATION = 'story_share.wsgi.application'
@@ -77,6 +81,10 @@ STATICFILES_DIRS = (
     BASE_DIR + STORY_SITE_DIR + "/static/",
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'storage/')
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -95,3 +103,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+
