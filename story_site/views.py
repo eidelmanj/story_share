@@ -238,7 +238,7 @@ def generate_compiled_stories(request):
         destPath = handle_compilation(toCombine, request.user.username)
 
         if destPath:
-            compilation = Compilation(user = request.user, timeCreated = datetime.now())
+            compilation = Compilation(user = request.user, timeCreated = datetime.now(), averageRank = 0, numVotes = 0)
             compilation.save()
 
             bestTags = most_frequent_tags(10, matchingAudioFiles)
