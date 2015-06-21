@@ -3,7 +3,7 @@ import random
 import os
 import utilities
 from django.contrib.auth.models import User
-from .models import OwnedAudioFile, Dialect, City
+from .models import OwnedAudioFile, Dialect, City, Story, AudioFormat
 import audioProcess
 from django.conf import settings
 
@@ -30,7 +30,7 @@ def handle_compilation(toCompile, username):
 
 
 
-def handle_uploaded_file(f, ownerUser, title, description, region, language, country):
+def handle_uploaded_file(f, ownerUser, title, description, region, language, country, city, dialect, event):
 
     randomCode = utilities.id_generator(size=10)
 
@@ -72,10 +72,12 @@ def handle_uploaded_file(f, ownerUser, title, description, region, language, cou
         print "at the else..."
         os.rename(filePath, filePath + "." +  audioFormat)
 
-        
+    formatEntry = AudioFormat.objects.get(name = audioFormat)
 
-    a = OwnedAudioFile(owner = ownerUser, filePath = filePath + "." +  audioFormat, title=title, description = description, language=language, region=region, country=country, dialect=Dialect.objects.get(id=1), city=City.objects.get(id=1) )
+    a = OwnedAudioFile(filePath = filePath + "." +  audioFormat, audioFormat = formatEntry, title=title)
     a.save()
+    s = Story(title = title, owner = ownerUser, description = description, language = language, region = region, country = country, dialect = dialect, city = city, storyFile = a, event=event)
+    s.save()
 
     return a
     

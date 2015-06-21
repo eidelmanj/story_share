@@ -1,49 +1,38 @@
 <head>
+  {% include "story_site/includes.html" %}
 </head>
 
 <body>
   {% load staticfiles %}
   {% include "story_site/topmenu.html" %}
 
-  <div class="upload_form">
-    <form  enctype="multipart/form-data" action="/story_site/upload/" method="POST">
-      {% csrf_token %}
+  <!-- <div class="upload_form"> -->
+  <!--   <form  enctype="multipart/form-data" action="/story_site/upload/" method="POST"> -->
+  <!--     {% csrf_token %} -->
 
-      <table class="file_upload_table">
-	{{ form.as_table }}
-      </table>
-      <input type="submit">
-    </form>
-  </div>
+  <!--     <table class="file_upload_table"> -->
+  <!-- 	{{ form.as_table }} -->
+  <!--     </table> -->
+  <!--     <input type="submit"> -->
+  <!--   </form> -->
+  <!-- </div> -->
 
-  <div class="owned_audio_list">
-    {% if allAudio %}
+  <div class="main">
 
-    {% for audioFile in allAudio %}
+    {% include "story_site/user_menu.html" %}
 
-    <table class="owned_audio_table">
-      <tr>
-	<td> Title: </td>
-	<td> {{ audioFile.title }} </td>
-      </tr>
+    {% ifequal kind "profile" %}
+    // TODO
+    {% endifequal %} 
 
-      <tr>
-	<td> Description: </td>
-	<td> {{ audioFile.description }} </td>
-      </tr>
+    {% ifequal kind "compilation" %}
+    {% include "story_site/previous_compilations.html" %}
+    {% endifequal %}
 
-      <tr>
-	<td> Download: </td>
-	<td> <a href = "{{ audioFile.webPath }}"> {{ audioFile.title }} </td>
-    </table>
-    <br><br>
-
-    {% endfor %}
-
-    {% else %}
-
+    {% ifequal kind "story" %}
+    {% include "story_site/owned_audio_list.html" %}
+    {% endifequal %}
     
-    {% endif %}
   </div>
 
 </body>

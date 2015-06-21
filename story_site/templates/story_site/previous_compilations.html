@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<script type="text/javascript" src="{% static 'js/user_page_compilations.js' %}"> </script>
+
+<div class="previous_compilations" id="prev_compilations_div">
+  <h2> Previous Compilations </h2>
+  {% if previousCompilations %}
+  {% for compilation in previousCompilations %}
+
+
+  <h3> Compilation Title </h3>
+  <table class="previous_compilation_table">
+    <tr>
+      <td>Tags: </td>
+      <!-- TODO !-->
+ 
+    </tr>
+
+    <tr>
+      <td>
+	Rank this compilation:
+      </td>
+      <td>
+	<a href="#" onclick="return rank_compilation( {{ compilation.id }}, 1);">1</a>
+	<a href="#" onclick="return rank_compilation( {{ compilation.id }}, 2);">2</a>
+	<a href="#" onclick="return rank_compilation( {{ compilation.id }}, 3);">3</a>
+	<a href="#" onclick="return rank_compilation( {{ compilation.id }}, 4);">4</a>
+	<a href="#" onclick="return rank_compilation( {{ compilation.id }}, 5);">5</a>
+      </td>
+    </tr>
+
+    
+    <tr>
+      <th> Title </th>
+      <th> Description </th>
+      <th> Rank </th>
+    </tr>
+    
+    {% for story in compilation.story.all|slice:":3" %}
+    <tr>
+      <td>{{ story.title }}</td>
+      <td>{{ story.description | truncatewords:10 }}</td>
+      <td>
+	<a href="#" onclick="return rank_story( {{ story.id }}, 1);">1</a>
+	<a href="#" onclick="return rank_story( {{ story.id }}, 2);">2</a>
+	<a href="#" onclick="return rank_story( {{ story.id }}, 3);">3</a>
+	<a href="#" onclick="return rank_story( {{ story.id }}, 4);">4</a>
+	<a href="#" onclick="return rank_story( {{ story.id }}, 5);">5</a>
+      </td>
+    </tr>
+    {% endfor %}
+    <tr><td></td><td><a href="#"> Read more... </a></td><td></td></tr>
+    
+    
+  </table>
+  
+  {% endfor %}
+  
+  
+  {% else %}
+  
+  No previous compilations.
+  
+  {% endif %}
+</div>
+

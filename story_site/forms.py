@@ -1,5 +1,5 @@
 from django import forms
-from .models import Language, Country, Region
+from .models import Language, Country, Region, Dialect, City
 
 class UploadAudioFileForm(forms.Form):
     langObjs = Language.objects.all()
@@ -11,6 +11,9 @@ class UploadAudioFileForm(forms.Form):
     language = forms.ModelChoiceField(queryset = langObjs, empty_label=None)
     region = forms.ModelChoiceField(queryset = regObjs, empty_label=None)
     country = forms.ModelChoiceField(queryset = countryObjs, empty_label=None)
+    dialect = forms.ModelChoiceField(queryset = Dialect.objects.all(), empty_label=None)
+    # city = forms.ModelChoiceField(queryset = City.objects.all(), empty_label=None)
+
     file = forms.FileField()
 
 

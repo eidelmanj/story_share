@@ -1,17 +1,77 @@
 <head>
+  {% include "story_site/includes.html" %}
+  
 </head>
 
 <body>
   {% load staticfiles %}
   {% include "story_site/topmenu.html" %}
+  
+  <script type="text/javascript" src="{% static 'js/compile_stories.js' %}"> </script>
+  
+  <div class="main">
 
-  <div class="choose_story_features" >
-    <form action="{% url 'generate_compiled_stories' %}" enctype="multipart/form-data" method="POST" >
-      {% csrf_token %}
-      <table class="choose_story_table">
-	{{ form.as_table }}
-      </table>
-      <input type="submit">
-    </form>
+    {% if noneFound %}
+    <div class="compilation_fail">
+      Oops! There aren't enough stories with the parameters you asked for!
+    </div><br><br>
+    {% endif %}
+
+    
+    <div class="choose_story_features" >
+      <form action="{% url 'generate_compiled_stories' %}"  method="POST" id="compile_form" >
+	{% csrf_token %}
+	<table class="choose_story_table" id="compile_story_table">
+	  <tr>
+	    <td> Keywords: </td>
+	    <td> <input type="text" name="keyword"> </td>
+	  </tr>
+	  <tr>
+	    <td>Tags </td>
+	    <td id = "tag_td">
+	      <!-- <div class="ui-widget"> -->
+		<input type="text" class="tag_input" name="tag_input" id="tag_input">
+	      <!-- </div> -->
+	      <div id="tag_display"> </div>
+	    </td>
+													  
+	  </tr>
+	  <tr>
+	    <td> Language </td>
+	    <td>
+	      <select name="language" form="compile_form">
+		<option value="None">All languages</option>
+		{% for lang in languages %}
+		<option value="{{ lang }}">{{ lang }} </option>
+		{% endfor %}
+	      </select>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td> Country of origin </td>
+	    <td>
+	      <select id="country_select" name="country" form="compile_form">
+		<option value="None">All Countries</option>
+		{% for country in countries %}
+		<option value="{{ country }}">{{ country }} </option>
+		{% endfor %}
+	    </td>
+	  </tr>
+
+	  <tr id = "city_tr">
+	    <td> City of origin: </td>
+	    <td id = "city_td"> </td>
+	  </tr>
+
+	  <tr id = "duration_tr">
+	    <td> Preferred duration (minutes): </td>
+	    <td> <input name="duration" value="0" type="input"> </td>
+	  </tr>
+	  
+	</table>
+	<div id="extra_stuff_div"> </div>
+	<a onclick="submit_form()" href="#">Search</a>
+      </form>
+    </div>
   </div>
 </body>

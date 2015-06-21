@@ -1,13 +1,17 @@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div class="topMenu">
   <ul>
-    <li><a href = "{% url 'index' %}">Home</a></li>
+    <li><a class="white" href = "{% url 'index' %}">Home</a></li>
     {% if user.is_authenticated %}
-    <li><a href = "{% url 'user_page' %}"> {{ user.get_username }}'s Home Page </a> </li>
-    <li><a href = "{% url 'compilation_page' %}"> Compile Stories </a> </li>
-    <li><a href = "{% url 'logout_page' %}">Logout</a></li>
+    <li><a class="white" href = "{% url 'user_page' %}"> {{ user.get_username }}'s Home Page </a> </li>
+    <li><a class="white" class = "white" href= "{% url 'upload_audio_page' %}"> Upload New Story </a></li>
+    <li><a class="white" href = "{% url 'compilation_page' %}"> Compile Stories </a> </li>
+    <li><a class="white" href = "{% url 'logout_page' %}">Logout</a></li>
     {% else %}
-    <li><a href = "{% url 'login_page' %}">Sign in</a></li>
-    <li><a href = "{% url 'register_page' %}">Register</a></li>
+    <li><a class="white" href = "{% url 'login_page' %}">Sign in</a></li>
+    <li><a class="white" href = "{% url 'register_page' %}">Register</a></li>
     {% endif %}
   </ul>
 </div>

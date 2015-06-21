@@ -1,0 +1,23 @@
+<head>
+  {% include "story_site/includes.html" %}
+</head>
+
+<body>
+  {% load staticfiles %}
+  {% include "story_site/topmenu.html" %}
+
+  <div class="main">
+    <div class="upload_form">
+      <form  enctype="multipart/form-data" action="/story_site/upload/" method="POST">
+	{% csrf_token %}
+	
+	<table class="file_upload_table">
+	  {{ form.as_table }}
+	</table>
+	<input type="submit">
+      </form>
+    </div>
+    </div>
+  </div>
+
+</body>
